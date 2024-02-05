@@ -2,8 +2,8 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import errorIcon from '../img/octagon.svg';
-import closeIcon from '../img/close.svg';
+import errorIcon from '../src/img/octagon.svg';
+import closeIcon from '../src/img/close.svg';
 
 const refs = {
   form: document.querySelector('.form'),
