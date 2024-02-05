@@ -16,12 +16,12 @@ refs.form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
   e.preventDefault();
-  const search = e.target.elements.search.value;
+  const search = e.target.elements.search.value.trim();
   refs.loader.classList.remove('hidden');
+  refs.gallery.innerHTML = '';
   getImagesByType(search)
     .then(data => {
       if (data.totalHits === 0) {
-        refs.gallery.innerHTML = '';
         return showError(message);
       }
       const markup = galleryTemplate(data.hits);
@@ -51,7 +51,11 @@ function getImagesByType(query) {
 
   const url = `${BASE_URL}?${PARAMS}`;
 
-  return fetch(url).then(res => res.json());
+  return fetch(url)
+    .then(res => res.json())
+    .catch(error => {
+      showError(error);
+    });
 }
 
 function imageTemplate(data) {
